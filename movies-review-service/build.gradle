@@ -31,8 +31,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	// Updated for Spring Boot 3.x compatibility
-	testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring3x'
+	implementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo:4.3.3'
 	testImplementation 'io.projectreactor:reactor-test'
 }
 
