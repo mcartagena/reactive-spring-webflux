@@ -45,3 +45,7 @@ spring:
     data:
       mongodb:
         additional-hosts=localhost?retryWrites=false:
+---
+logging:
+  level:
+    root: debug
