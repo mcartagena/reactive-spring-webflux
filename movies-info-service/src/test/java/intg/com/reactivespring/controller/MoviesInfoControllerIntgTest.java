@@ -110,6 +110,18 @@ class MoviesInfoControllerIntgTest {
     }
 
     @Test
+    void getMoviesInfoByIdNotFound() {
+
+        var id = "fod";
+
+        webTestClient.get()
+                .uri(MOVIES_INFO_URL + "/{id}", id)
+                .exchange()
+                .expectStatus()
+                .isNotFound();
+    }
+
+    @Test
     void updateMoviesInfo() {
 
         var id = "abc";
@@ -131,6 +143,22 @@ class MoviesInfoControllerIntgTest {
                     assertEquals("Dark Knight Rises II", movieInfoUpdated.getName());
                     assertNotNull(movieInfoUpdated.getCast().contains("Marcelo Cartagena"));
                 });
+    }
+
+    @Test
+    void updateMoviesInfoNoFound() {
+
+        var id = "fod";
+
+        var movieToUpdate = new MovieInfo(null, "Dark Knight Rises II",
+                2012, List.of("Christian Bale", "Tom Hardy", "Marcelo Cartagena"), LocalDate.parse("2026-05-05"));
+
+        webTestClient.put()
+                .uri(MOVIES_INFO_URL + "/{id}", id)
+                .bodyValue(movieToUpdate)
+                .exchange()
+                .expectStatus()
+                .isNotFound();
     }
 
     @Test
